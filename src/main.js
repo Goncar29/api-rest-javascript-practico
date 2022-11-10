@@ -33,7 +33,6 @@ async function getTrendingMoviesPreview(){
     })
     
 }
-getTrendingMoviesPreview()
 
 async function getTrendingTvPreview(){
     const res = await fetch('https://api.themoviedb.org/3/trending/tv/day?api_key=' + API_KEY);
@@ -57,7 +56,6 @@ async function getTrendingTvPreview(){
     })
     
 }
-getTrendingTvPreview()
 
 
 async function getCategoriesPreview(){
@@ -82,4 +80,3 @@ async function getCategoriesPreview(){
     })
     
 }
-getCategoriesPreview()
