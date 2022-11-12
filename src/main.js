@@ -15,11 +15,12 @@ async function getTrendingMoviesPreview(){
     // const res = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
     // const data = await res.json();
 
+    trendingMoviesPreviewList.innerHTML = "";
+
     console.log({ data });
 
     const movies = data.results;
     movies.forEach(movie =>{
-        const trendingPreviewSection = document.querySelector('#trendingPreview .trendingPreview-movieList')
         const movieContainer = document.createElement('div');
         movieContainer.classList.add('movie-container');
 
@@ -29,7 +30,7 @@ async function getTrendingMoviesPreview(){
         movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300/' + movie.poster_path);
         
         movieContainer.appendChild(movieImg);
-        trendingPreviewSection.appendChild(movieContainer)
+        trendingMoviesPreviewList.appendChild(movieContainer)
     })
     
 }
@@ -38,11 +39,12 @@ async function getTrendingTvPreview(){
     const res = await fetch('https://api.themoviedb.org/3/trending/tv/day?api_key=' + API_KEY);
     const data = await res.json();
 
+    trendingPreviewSerieList.innerHTML = "";
+    
     console.log({ data });
 
     const series = data.results;
     series.forEach(serie =>{
-        const trendingPreviewSeriesContainer = document.querySelector('#trendingPreviewSeries .trendingPreview-serieList')
         const serieContainer = document.createElement('div');
         serieContainer.classList.add('serie-container');
 
@@ -52,7 +54,7 @@ async function getTrendingTvPreview(){
         serieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300/' + serie.poster_path);
         
         serieContainer.appendChild(serieImg);
-        trendingPreviewSeriesContainer.appendChild(serieContainer)
+        trendingPreviewSerieList.appendChild(serieContainer)
     })
     
 }
@@ -64,8 +66,9 @@ async function getCategoriesPreview(){
 
     console.log({ data });
 
+    categoriesPreviewList.innerHTML = "";
+
     categories.forEach(category =>{
-        const categoriesPreviewList = document.querySelector('#categoriesPreview .categoriesPreview-list')
         const categoryContainer = document.createElement('div');
         categoryContainer.classList.add('category-container');
 

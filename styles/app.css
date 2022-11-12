@@ -188,6 +188,10 @@ button {
   border-radius: 8px;
   height: 32px;
   width: 72px;
+}.trendingPreview-btnSeries {
+  border-radius: 8px;
+  height: 32px;
+  width: 72px;
 }
 
 .trendingPreview-movieList {
