@@ -86,3 +86,32 @@ async function getCategoriesPreview(){
     })
     
 }
+
+async function getMoviesByCategory(id){
+    const { data } = await api('discover/movie', {
+        params: {
+            with_genres: id,
+        },
+    });
+    // const res = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
+    // const data = await res.json();
+
+    genericSection.innerHTML = "";
+
+    console.log({ data });
+
+    const movies = data.results;
+    movies.forEach(movie =>{
+        const movieContainer = document.createElement('div');
+        movieContainer.classList.add('movie-container');
+
+        const movieImg = document.createElement('img');
+        movieImg.classList.add('movie-img');
+        movieImg.setAttribute('alt', movie.title);
+        movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300/' + movie.poster_path);
+        
+        movieContainer.appendChild(movieImg);
+        genericSection.appendChild(movieContainer)
+    })
+    window.scrollTo(0, 0);
+}
