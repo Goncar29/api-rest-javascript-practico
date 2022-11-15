@@ -8,7 +8,8 @@ trendingBtnSeries.addEventListener("click", () => {
     location.hash = '#trendstv';
 })
 arrowBtn.addEventListener("click", () => {
-    location.hash = '#home';
+    history.back();
+    // location.hash = '#home';
 });
 
 window.addEventListener('DOMContentLoaded', navigator, false);
