@@ -5,7 +5,6 @@ const api = axios.create({
     },
     params: {
         'api_key': API_KEY,
-        "language": "es-ES",
     },
 });
 
@@ -129,4 +128,14 @@ async function getMoviesBySearch(query){
 
     const multi = data.results;
     createMovies(multi, genericSection)
+}
+
+async function getTrendingMovies(){
+    const { data } = await api('trending/movie/day');
+    // const res = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
+    // const data = await res.json();
+    console.log({ data });
+
+    const movies = data.results;
+    createMovies(movies, genericSection)
 }

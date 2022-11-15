@@ -1,5 +1,7 @@
 searchFormBtn.addEventListener("click", () => {
-    location.hash = '#search=' + searchFormInput.value;
+    location.hash = '#search=' + searchFormInput.value
+
+    // hacer condicional para que el usuario escriba algo
 });
 trendingBtn.addEventListener("click", () => {
     location.hash = '#trends';
@@ -8,8 +10,7 @@ trendingBtnSeries.addEventListener("click", () => {
     location.hash = '#trendstv';
 })
 arrowBtn.addEventListener("click", () => {
-    history.back();
-    // location.hash = '#home';
+        history.back();
 });
 
 window.addEventListener('DOMContentLoaded', navigator, false);
@@ -57,6 +58,10 @@ function trendsPage() {
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
+
+    headerCategoryTitle.innerHTML = 'Tendencias'
+
+    getTrendingMovies()
 }
 function trendstv() {
     headerSection.classList.remove('header-container--long');
@@ -90,7 +95,7 @@ function searchPage() {
     movieDetailSection.classList.add('inactive');
 
     // ['#search', 'buscadó'] con split separamos los elementos en un array cada vez qe hay un =
-    const [_, query] = location.hash.split('=');
+    const [_, query] = location.hash.split('=')
     getMoviesBySearch(query);
 }
 function moviesDetailsPage() {
