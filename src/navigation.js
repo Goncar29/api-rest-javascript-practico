@@ -1,5 +1,5 @@
 searchFormBtn.addEventListener("click", () => {
-    location.hash = '#search=';
+    location.hash = '#search=' + searchFormInput.value;
 });
 trendingBtn.addEventListener("click", () => {
     location.hash = '#trends';
@@ -79,7 +79,7 @@ function searchPage() {
     arrowBtn.classList.remove('inactive');
     arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.add('inactive');
-    headerCategoryTitle.classList.remove('inactive');
+    headerCategoryTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
 
     trendingPreviewSeries.classList.add('inactive');
@@ -87,6 +87,10 @@ function searchPage() {
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
+
+    // ['#search', 'buscadó'] con split separamos los elementos en un array cada vez qe hay un =
+    const [_, query] = location.hash.split('=');
+    getMoviesBySearch(query);
 }
 function moviesDetailsPage() {
     console.log('Movie!!');
@@ -122,7 +126,7 @@ function cetagoriesPage() {
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
 
-    // ['#category', 'id-name']
+    // ['#category', 'id-name'] con split separamos los elementos en un array cada vez qe hay un =
     const [_, categoryData] = location.hash.split('=');
     const [categoryId, categoryName] = categoryData.split('-');
 

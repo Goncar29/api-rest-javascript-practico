@@ -49,6 +49,7 @@ function createCategories(categories, container){
     })
 }
 
+
 // Llamados a la API
 
 async function getTrendingMoviesPreview(){
@@ -101,11 +102,31 @@ async function getMoviesByCategory(id){
             with_genres: id,
         },
     });
-    // const res = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
-    // const data = await res.json();
 
     console.log({ data });
 
     const movies = data.results;
     createMovies(movies, genericSection)
+}
+
+// async function getCategoriesPreview(){
+//     const { data } = await api('genre/tv/list');
+//     const categories = data.genres;
+
+//     console.log({ data });
+
+//     createCategories(categoriesTv, categoriesPreviewList);
+    
+// }
+async function getMoviesBySearch(query){
+    const { data } = await api('search/movie', {
+        params: {
+            query,
+        },
+    });
+
+    console.log({ data });
+
+    const multi = data.results;
+    createMovies(multi, genericSection)
 }
