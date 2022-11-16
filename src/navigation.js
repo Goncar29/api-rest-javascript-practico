@@ -114,6 +114,10 @@ function moviesDetailsPage() {
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.add('inactive');
     movieDetailSection.classList.remove('inactive');
+
+     // ['#movie', 'id'] con split separamos los elementos en un array cada vez qe hay un =
+    const [_, movieId] = location.hash.split('=')
+    getMovieById(movieId);
 }
 function cetagoriesPage() {
     console.log('Categories!!');
