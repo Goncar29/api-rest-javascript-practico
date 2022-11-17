@@ -1,6 +1,5 @@
 searchFormBtn.addEventListener("click", () => {
     location.hash = '#search=' + searchFormInput.value
-
     // hacer condicional para que el usuario escriba algo
 });
 trendingBtn.addEventListener("click", () => {
@@ -41,7 +40,6 @@ function navigator() {
     document.documentElement.scrollTop = 0;
     location.hash
 }
-
 function trendsPage() {
     console.log('Trends!!');
 
