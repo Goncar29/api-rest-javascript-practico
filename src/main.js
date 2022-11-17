@@ -39,7 +39,7 @@ function createMovies(movies, container, lazyLoad = false) {
         movieImg.addEventListener('error', () => {
         movieImg.setAttribute(
             'src',
-            'https://static.platzi.com/static/images/error/img404.png',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo1lw2XoUtv1eNn-VPqax_v5lk1fB5DYu6mA&usqp=CAU',
         );
     })
 
