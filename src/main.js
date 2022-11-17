@@ -11,37 +11,45 @@ const api = axios.create({
 // Utils
 
 const lazyLoader = new IntersectionObserver((entries) => {
-    entries.forEach((entry) =>{
-        console.log({entry})
-        if(entry.isIntersecting){
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
             const url = entry.target.getAttribute('data-img')
-            entry.target.setAttribute('src', url)
+            entry.target.setAttribute('src', url);
         }
-    })
+    });
 });
 
-function createMovies(movies, container, lazyLoader = false) {
+function createMovies(movies, container, lazyLoad = false) {
     container.innerHTML = '';
 
-    movies.forEach(movie =>{
+    movies.forEach(movie => {
         const movieContainer = document.createElement('div');
         movieContainer.classList.add('movie-container');
-        movieContainer.addEventListener("click", () => {
+        movieContainer.addEventListener('click', () => {
             location.hash = '#movie=' + movie.id;
-        })
+        });
 
         const movieImg = document.createElement('img');
         movieImg.classList.add('movie-img');
         movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute(lazyLoader ? 'data-img' : 'src', 'https://image.tmdb.org/t/p/w300/' + movie.poster_path);
-        
-        if(lazyLoader){
-            lazyLoader.observe(movieImg)
-        }
-
-        movieContainer.appendChild(movieImg);
-        container.appendChild(movieContainer)
+        movieImg.setAttribute(
+        lazyLoad ? 'data-img' : 'src',
+        'https://image.tmdb.org/t/p/w300' + movie.poster_path,
+        );
+        movieImg.addEventListener('error', () => {
+        movieImg.setAttribute(
+            'src',
+            'https://static.platzi.com/static/images/error/img404.png',
+        );
     })
+
+    if (lazyLoad) {
+        lazyLoader.observe(movieImg);
+    }
+
+    movieContainer.appendChild(movieImg);
+    container.appendChild(movieContainer);
+    });
 }
 
 function createCategories(categories, container){
@@ -72,10 +80,10 @@ async function getTrendingMoviesPreview(){
     const { data } = await api('trending/movie/day');
     // const res = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
     // const data = await res.json();
-    console.log({ data });
-
     const movies = data.results;
-    createMovies(movies, trendingMoviesPreviewList, true)
+    console.log(movies)
+
+    createMovies(movies, trendingMoviesPreviewList, true);
 }
 
 async function getTrendingTvPreview(){
@@ -122,7 +130,7 @@ async function getMoviesByCategory(id){
     console.log({ data });
 
     const movies = data.results;
-    createMovies(movies, genericSection)
+    createMovies(movies, genericSection, true)
 }
 
 // async function getCategoriesPreview(){

@@ -129,6 +129,7 @@ button {
 }
 .movie-img {
   border-radius: 8px;
+  min-height: 175px;
 }
 .serie-container--loading {
   background: var(--purple-light-2);
@@ -296,7 +297,10 @@ button {
   min-width: 150px;
   max-width: 150px;
 }
-
+.serie-img{
+  border-radius: 8px;
+  min-height: 175px;
+}
 /* Categories */
 .category-container {
   width: 45%;
