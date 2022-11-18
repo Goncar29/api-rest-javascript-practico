@@ -1,3 +1,6 @@
+let page = 1;
+let infinitScroll;
+
 searchFormBtn.addEventListener("click", () => {
     location.hash = '#search=' + searchFormInput.value
     // hacer condicional para que el usuario escriba algo
@@ -14,9 +17,15 @@ arrowBtn.addEventListener("click", () => {
 
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
+window.addEventListener('scroll', infinitScroll, false);
 
 function navigator() {
     console.log({ location });
+
+    if(infinitScroll) {
+        window.removeEventListener('scroll', infinitScroll, { passive: false });
+        infinitScroll = undefined;
+    }
 
     if(location.hash.startsWith('#trends')) {
         trendsPage()
@@ -42,6 +51,10 @@ function navigator() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     location.hash
+
+    if(infinitScroll){
+        window.addEventListener('scroll', infinitScroll, { passive: false });
+    }
 }
 function trendsPage() {
     console.log('Trends!!');
@@ -63,6 +76,7 @@ function trendsPage() {
     headerCategoryTitle.innerHTML = 'Tendencias'
 
     getTrendingMovies()
+    infinitScroll = getPaginatedTrendingMovies;
 }
 // function trendstv() {
 //     headerSection.classList.remove('header-container--long');
