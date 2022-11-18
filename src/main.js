@@ -19,8 +19,10 @@ const lazyLoader = new IntersectionObserver((entries) => {
     });
 });
 
-function createMovies(movies, container, lazyLoad = false) {
-    container.innerHTML = '';
+function createMovies(movies, container, { lazyLoad = false, clean = true, } = {},) {
+    if(clean) {
+        container.innerHTML = '';
+    }
 
     movies.forEach(movie => {
         const movieContainer = document.createElement('div');
@@ -86,30 +88,6 @@ async function getTrendingMoviesPreview(){
     createMovies(movies, trendingMoviesPreviewList, true);
 }
 
-async function getTrendingTvPreview(){
-    const res = await fetch('https://api.themoviedb.org/3/trending/tv/day?api_key=' + API_KEY);
-    const data = await res.json();
-
-    trendingPreviewSerieList.innerHTML = "";
-    
-    console.log({ data });
-
-    const series = data.results;
-    series.forEach(serie =>{
-        const serieContainer = document.createElement('div');
-        serieContainer.classList.add('serie-container');
-
-        const serieImg = document.createElement('img');
-        serieImg.classList.add('serie-img');
-        serieImg.setAttribute('alt', serie.title);
-        serieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300/' + serie.poster_path);
-        
-        serieContainer.appendChild(serieImg);
-        trendingPreviewSerieList.appendChild(serieContainer)
-    })
-    
-}
-
 async function getCategoriesPreview(){
     const { data } = await api('genre/movie/list');
     const categories = data.genres;
@@ -117,7 +95,6 @@ async function getCategoriesPreview(){
     console.log({ data });
 
     createCategories(categories, categoriesPreviewList);
-    
 }
 
 async function getMoviesByCategory(id){
@@ -155,14 +132,35 @@ async function getMoviesBySearch(query){
     createMovies(multi, genericSection)
 }
 
-async function getTrendingMovies(){
+async function getTrendingMovies() {
     const { data } = await api('trending/movie/day');
-    // const res = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
-    // const data = await res.json();
-    console.log({ data });
-
     const movies = data.results;
-    createMovies(movies, genericSection)
+
+    createMovies(movies, genericSection, { lazyLoad: true, clean: true });
+
+    const btnLoadMore = document.createElement('button');
+    btnLoadMore.innerText = 'Cargar más';
+    btnLoadMore.addEventListener('click', getPaginatedTrendingMovies);
+    genericSection.appendChild(btnLoadMore);
+}
+
+let page = 1;
+
+async function getPaginatedTrendingMovies() {
+    page++;
+    const { data } = await api('trending/movie/day', {
+        params: {
+            page,
+        },
+    });
+    const movies = data.results;
+
+    createMovies(movies, genericSection, { lazyLoad: true, clean: false });
+
+    const btnLoadMore = document.createElement('button');
+    btnLoadMore.innerText = 'Cargar más';
+    btnLoadMore.addEventListener('click', getPaginatedTrendingMovies);
+    genericSection.appendChild(btnLoadMore);
 }
 
 async function getMovieById(id){

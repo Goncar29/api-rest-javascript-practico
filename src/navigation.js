@@ -5,9 +5,9 @@ searchFormBtn.addEventListener("click", () => {
 trendingBtn.addEventListener("click", () => {
     location.hash = '#trends';
 });
-trendingBtnSeries.addEventListener("click", () => {
-    location.hash = '#trendstv';
-})
+// trendingBtnSeries.addEventListener("click", () => {
+//     location.hash = '#trendstv';
+// })
 arrowBtn.addEventListener("click", () => {
         history.back();
 });
@@ -28,6 +28,9 @@ function navigator() {
     }else if(location.hash.startsWith('#movie=')) {
         moviesDetailsPage()
         // getTrendingMoviesPreview()
+    // }else if(location.hash.startsWith('#serie=')) {
+    //     seriesDetailsPage()
+    //     // getTrendingSeriesPreview()
     }else if(location.hash.startsWith('#category=')){
         cetagoriesPage()
     }else{
@@ -51,7 +54,7 @@ function trendsPage() {
     headerCategoryTitle.classList.remove('inactive');
     searchForm.classList.add('inactive');
 
-    trendingPreviewSeries.classList.add('inactive');
+    // trendingPreviewSeries.classList.add('inactive');
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
@@ -61,20 +64,20 @@ function trendsPage() {
 
     getTrendingMovies()
 }
-function trendstv() {
-    headerSection.classList.remove('header-container--long');
-    headerSection.style.background = '';
-    arrowBtn.classList.remove('inactive');
-    arrowBtn.classList.remove('header-arrow--white');
-    headerTitle.classList.add('inactive');
-    headerCategoryTitle.classList.remove('inactive');
-    searchForm.classList.add('inactive');
+// function trendstv() {
+//     headerSection.classList.remove('header-container--long');
+//     headerSection.style.background = '';
+//     arrowBtn.classList.remove('inactive');
+//     arrowBtn.classList.remove('header-arrow--white');
+//     headerTitle.classList.add('inactive');
+//     headerCategoryTitle.classList.remove('inactive');
+//     searchForm.classList.add('inactive');
 
-    trendingPreviewSeries.classList.add('inactive');
-    categoriesPreviewSection.classList.add('inactive');
-    genericSection.classList.remove('inactive');
-    movieDetailSection.classList.add('inactive')
-}
+//     trendingPreviewSeries.classList.add('inactive');
+//     categoriesPreviewSection.classList.add('inactive');
+//     genericSection.classList.remove('inactive');
+//     movieDetailSection.classList.add('inactive')
+// }
 function searchPage() {
     console.log('Search!!');
 
@@ -86,7 +89,7 @@ function searchPage() {
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
 
-    trendingPreviewSeries.classList.add('inactive');
+    // trendingPreviewSeries.classList.add('inactive');
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
@@ -107,7 +110,7 @@ function moviesDetailsPage() {
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.add('inactive');
 
-    trendingPreviewSeries.classList.remove('inactive');
+    // trendingPreviewSeries.classList.remove('inactive');
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.add('inactive');
@@ -128,7 +131,7 @@ function cetagoriesPage() {
     headerCategoryTitle.classList.remove('inactive');
     searchForm.classList.add('inactive');
 
-    trendingPreviewSeries.classList.add('inactive');
+    // trendingPreviewSeries.classList.add('inactive');
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
@@ -153,13 +156,13 @@ function homePage() {
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
 
-    trendingPreviewSeries.classList.remove('inactive');
+    // trendingPreviewSeries.classList.remove('inactive');
     trendingPreviewSection.classList.remove('inactive');
     categoriesPreviewSection.classList.remove('inactive');
     genericSection.classList.add('inactive');
     movieDetailSection.classList.add('inactive');
     
     getTrendingMoviesPreview();
-    getTrendingTvPreview()
+    // getTrendingTvPreview()
     getCategoriesPreview();
 }
