@@ -113,6 +113,8 @@ function searchPage() {
     // ['#search', 'buscadó'] con split separamos los elementos en un array cada vez qe hay un =
     const [_, query] = location.hash.split('=')
     getMoviesBySearch(query);
+
+    infinitScroll = getPaginatedMoviesBySearch(query);
 }
 function moviesDetailsPage() {
     console.log('Movie!!');
@@ -158,7 +160,7 @@ function cetagoriesPage() {
 
     headerCategoryTitle.innerHTML = categoryName
 
-    getMoviesByCategory(categoryId);
+    infinitScroll = getPaginatedMoviesByCategory(categoryId);
 }
 function homePage() {
     console.log('Home!!');
