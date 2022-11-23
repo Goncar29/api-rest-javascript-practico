@@ -96,9 +96,9 @@ button {
 .trendingPreview-container, .categoriesPreview-container, .liked-container footer {
   margin-top: 48px;
 }
-.trendingPreview-containerSeries, .categoriesPreview-container, footer {
+/* .trendingPreview-containerSeries, .categoriesPreview-container, footer {
   margin-top: 48px;
-}
+} */
 
 .trendingPreview-header, .categoriesPreview-title, .liked-header {
   margin-bottom: 24px;
@@ -144,7 +144,6 @@ button {
 }
 .movie-btn::before {
   content: '🤍';
-  /* font-size: 13px; */
 }
 .movie-btn--liked {
   background-color: var(--purple-light-2);
@@ -153,7 +152,7 @@ button {
 .movie-btn--liked::before {
   content: '💜';
 }
-.serie-container--loading {
+/* .serie-container--loading {
   background: var(--purple-light-2);
   border-radius: 8px;
   height: 225px;
@@ -164,7 +163,7 @@ button {
   max-width: 150px;
   margin-bottom: 15px;
   animation: loading-skeleton infinite 1.5s;
-}
+} */
 .categoriesPreview-list, .categories-list {
   display: flex;
   align-items: center;
@@ -391,7 +390,7 @@ button {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   padding: 32px 24px;
-  margin-top: 135px;
+  margin-top: 405px;
   z-index: 1;
   position: absolute;
   background-color: var(--purple-light-1);
